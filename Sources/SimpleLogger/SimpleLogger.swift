@@ -2,7 +2,7 @@ import Foundation
 
 public final class Log {
 
-    private static var minimumLevel: LogLevel = .verbose
+    public static var minimumLevel: LogLevel = .verbose
 
     private static var timeStamp: String {
         ISO8601DateFormatter.string(
