@@ -18,7 +18,7 @@ public final class Log {
             return
         }
         let locationSuffix = logFileAndFunction ? " at \(lastComponent(of: file)): \(function)" : ""
-        print("\(timeStamp) \(level.emoji): \(message)\(locationSuffix)")
+        print("\(timeStamp) \(level.emojiDescription): \(message)\(locationSuffix)")
     }
 
     private static func lastComponent(of file: String) -> String {

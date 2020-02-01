@@ -7,7 +7,7 @@ public enum LogLevel: Int {
     case warn
     case error
 
-    var emoji: String {
+    var emojiDescription: String {
         switch self {
         case .verbose:
             return "💬 [VERBOSE]"
