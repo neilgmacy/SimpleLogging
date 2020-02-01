@@ -1,6 +1,6 @@
 # SimpleLogger
 
-SimpleLogger is a small utility for Swift apps that adds a little more customisation to a basic `print` statement.
+`SimpleLogger` is a small utility for Swift apps that adds a little more customisation to a basic `print` statement. You can log at different priority levels, and each level has an emoji to allow for better visual scanning of logs.
 
 ## Usage
 
@@ -14,25 +14,39 @@ func someMethod {
 }
 ```
 
-The `level` parameter is optional, and by default is set to  `.debug`. This will output as below:
+This will output as below:
 
 ```
 2020-02-01 11:31:14 ℹ️ [INFO]: Hello world!
 ```
 
-## Configuration
+The `level` parameter is optional, and by default is set to  `.debug`. 
 
-It's best to set these at an entry point or global configuration point in your app, such as in your AppDelegate.
+## Levels
+
+SimpleLogger has five logging levels. From lowest to highest, they are: 
+
+1.  `verbose` 💬
+2. `debug` 👨‍💻
+3. `info` ℹ️
+4. `warn` ⚠️
+5. `error` 🛑
+
+## Configuration Properties
+
+`SimpleLogger` supports some static configuration properties. It's best to set these properties at an entry point or global configuration point in your app, such as in your AppDelegate.
 
 ### Minimum logging level
 
-You can set a minimum level to filter out noise. By default this is set to `.verbose`, meaning all statements will be logged. You can change that easily:
+You can set a minimum level to filter out noise. By default this is set to `.verbose`, meaning all statements will be logged. You can change that easily, for example:
 
 ```
-SimpleLogger.minimumLevel = .info
+SimpleLogger.minimumLevel = .warn
 ```
 
-### File Locations
+When the minimum level is `warn`, any `verbose`, `debug` or `info` statements will be ignored, meaning you only see messages that you have marked as higher priority.
+
+### File and Function of call site
 
 You can record in which file and function the print statement took place. This is turned off by default, but is easy to turn on:
 
