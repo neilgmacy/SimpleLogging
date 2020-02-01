@@ -6,7 +6,7 @@
 
 Just import `SimpleLogger` in the the file where you want to use it, and call `Log.print`:
 
-```
+```swift
 import SimpleLogger
 
 func someMethod {
@@ -40,7 +40,7 @@ SimpleLogger has five logging levels. From lowest to highest, they are:
 
 You can set a minimum level to filter out noise. By default this is set to `.verbose`, meaning all statements will be logged. You can change that easily, for example:
 
-```
+```swift
 SimpleLogger.minimumLevel = .warn
 ```
 
@@ -50,7 +50,7 @@ When the minimum level is `warn`, any `verbose`, `debug` or `info` statements wi
 
 You can record in which file and function the print statement took place. This is turned off by default, but is easy to turn on:
 
-```
+```swift
 SimpleLogger.logFileAndFunction = true
 ```
 
