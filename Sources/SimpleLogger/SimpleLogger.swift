@@ -2,6 +2,8 @@ import Foundation
 
 public final class Log {
 
+    private static var minimumLevel: LogLevel = .verbose
+
     private static var timeStamp: String {
         ISO8601DateFormatter.string(
             from: Date(),
@@ -11,6 +13,9 @@ public final class Log {
     }
 
     private static func printLine(_ message: String, level: LogLevel = .debug, file: String = #file, function: String = #function) {
+        guard level >= minimumLevel else {
+            return
+        }
         print("\(timeStamp) \(level.emoji): \(message) at \(lastComponent(of: file)): \(function)")
     }
 

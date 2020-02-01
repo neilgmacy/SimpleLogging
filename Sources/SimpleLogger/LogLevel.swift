@@ -1,6 +1,6 @@
 import Foundation
 
-public enum LogLevel {
+public enum LogLevel: Int {
     case verbose
     case debug
     case info
@@ -20,5 +20,11 @@ public enum LogLevel {
         case .error:
             return "🛑 [ERROR]"
         }
+    }
+}
+
+extension LogLevel: Comparable {
+    public static func < (lhs: LogLevel, rhs:LogLevel) -> Bool {
+        return lhs.rawValue < rhs.rawValue
     }
 }
