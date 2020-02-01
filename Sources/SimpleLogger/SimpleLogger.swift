@@ -3,6 +3,7 @@ import Foundation
 public final class Log {
 
     public static var minimumLevel: LogLevel = .verbose
+    public static var logFileAndFunction = false
 
     private static var timeStamp: String {
         ISO8601DateFormatter.string(
@@ -16,7 +17,8 @@ public final class Log {
         guard level >= minimumLevel else {
             return
         }
-        print("\(timeStamp) \(level.emoji): \(message) at \(lastComponent(of: file)): \(function)")
+        let locationSuffix = logFileAndFunction ? " at \(lastComponent(of: file)): \(function)" : ""
+        print("\(timeStamp) \(level.emoji): \(message)\(locationSuffix)")
     }
 
     private static func lastComponent(of file: String) -> String {
