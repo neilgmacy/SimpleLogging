@@ -12,3 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ...
 }
 ```
+
+set a minimum level to filter out noise:
+```
+SimpleLogger.minimumLevel = .info
+```
