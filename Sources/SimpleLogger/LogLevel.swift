@@ -1,5 +1,8 @@
 import Foundation
 
+/**
+ `LogLevel` is used to indicate the importance of a statement. `verbose` is the lowest priority log statement. `error` is the highest.
+ */
 public enum LogLevel: Int {
     case verbose
     case debug
