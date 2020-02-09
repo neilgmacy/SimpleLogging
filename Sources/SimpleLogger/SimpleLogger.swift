@@ -2,6 +2,8 @@ import Foundation
 
 public final class Log {
 
+    // MARK: - Public properties
+
     /**
      Set the minimum level of priority to log. This is `LogLevel.verbose` by default.
 
@@ -16,6 +18,8 @@ public final class Log {
      */
     public static var logFileAndFunction = false
 
+    // MARK: - Private properties
+
     private static var timeStamp: String {
         ISO8601DateFormatter.string(
             from: Date(),
@@ -24,7 +28,72 @@ public final class Log {
         )
     }
 
-    private static func printLine(_ message: String, level: LogLevel = .debug, file: String = #file, function: String = #function) {
+    // MARK: - Public methods
+
+    /**
+     Log a message at level `LogLevel.verbose`.
+
+     - parameter message: The message to record.
+     - parameter includeInRelease: `true` if you want this to be included in release builds.
+     */
+    public static func verbose(_ message: String, includeInRelease: Bool = false, file: String = #file, function: String = #function) {
+        log(message, level: .verbose, includeInRelease: includeInRelease, file: file, function: function)
+    }
+
+    /**
+     Log a message at level `LogLevel.debug`.
+
+     - parameter message: The message to record.
+     - parameter includeInRelease: `true` if you want this to be included in release builds.
+     */
+    public static func debug(_ message: String, includeInRelease: Bool = false, file: String = #file, function: String = #function) {
+        log(message, level: .debug, includeInRelease: includeInRelease, file: file, function: function)
+    }
+
+    /**
+     Log a message at level `LogLevel.info`.
+
+     - parameter message: The message to record.
+     - parameter includeInRelease: `true` if you want this to be included in release builds.
+     */
+    public static func info(_ message: String, includeInRelease: Bool = false, file: String = #file, function: String = #function) {
+        log(message, level: .info, includeInRelease: includeInRelease, file: file, function: function)
+    }
+
+    /**
+     Log a message at level `LogLevel.warn`.
+
+     - parameter message: The message to record.
+     - parameter includeInRelease: `true` if you want this to be included in release builds.
+     */
+    public static func warn(_ message: String, includeInRelease: Bool = false, file: String = #file, function: String = #function) {
+        log(message, level: .warn, includeInRelease: includeInRelease, file: file, function: function)
+    }
+
+    /**
+     Log a message at level `LogLevel.error`.
+
+     - parameter message: The message to record.
+     - parameter includeInRelease: `true` if you want this to be included in release builds.
+     */
+    public static func error(_ message: String, includeInRelease: Bool = false, file: String = #file, function: String = #function) {
+        log(message, level: .error, includeInRelease: includeInRelease, file: file, function: function)
+    }
+
+    // MARK: - Private methods
+
+    private static func log(_ message: String, level: LogLevel, includeInRelease: Bool, file: String = #file, function: String = #function) {
+        if includeInRelease {
+            printLine(message, level: level, file: file, function: function)
+            return
+        }
+
+        #if DEBUG
+        printLine(message, level: level, file: file, function: function)
+        #endif
+    }
+
+    private static func printLine(_ message: String, level: LogLevel, file: String = #file, function: String = #function) {
         guard level >= minimumLevel else {
             return
         }
@@ -34,31 +103,5 @@ public final class Log {
 
     private static func lastComponent(of file: String) -> String {
         URL(fileURLWithPath: file).deletingPathExtension().lastPathComponent
-    }
-
-    /**
-     Print a statement to the log.
-
-     This will only be printed if the app is debuggable. Use `releaseLog` to print a statement in release configuration.
-
-     - parameter message: The custom string to log.
-     - parameter level: The `LogLevel` at which to record the print statement.
-     */
-    public static func log(_ message: String, level: LogLevel = .debug, file: String = #file, function: String = #function) {
-        #if DEBUG
-        printLine(message, level: level, file: file, function: function)
-        #endif
-    }
-
-    /**
-     Print a statement to the log.
-
-     If you want to print a statement that's only recorded in debug mode, use `log` instead.
-
-     - parameter message: The custom string to log.
-     - parameter level: The `LogLevel` at which to record the print statement.
-     */
-    public static func releaseLog(_ message: String, level: LogLevel = .debug, file: String = #file, function: String = #function) {
-        printLine(message, level: level, file: file, function: function)
     }
 }
