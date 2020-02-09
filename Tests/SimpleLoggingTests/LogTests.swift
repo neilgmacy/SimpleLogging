@@ -1,5 +1,5 @@
 import XCTest
-@testable import SimpleLogger
+@testable import SimpleLogging
 
 final class LogTests: XCTestCase {
 
