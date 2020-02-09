@@ -1,6 +1,6 @@
 import XCTest
 
-import SimpleLoggerTests
+import SimpleLoggingTests
 
 var tests = [XCTestCaseEntry]()
 tests += LogTests.allTests()

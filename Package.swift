@@ -4,7 +4,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "SimpleLogger",
+    name: "SimpleLogging",
     platforms: [
         .iOS(.v11),
         .macOS(.v10_13)
@@ -12,8 +12,8 @@ let package = Package(
     products: [
         // Products define the executables and libraries produced by a package, and make them visible to other packages.
         .library(
-            name: "SimpleLogger",
-            targets: ["SimpleLogger"]),
+            name: "SimpleLogging",
+            targets: ["SimpleLogging"]),
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
@@ -23,10 +23,10 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "SimpleLogger",
+            name: "SimpleLogging",
             dependencies: []),
         .testTarget(
-            name: "SimpleLoggerTests",
-            dependencies: ["SimpleLogger"]),
+            name: "SimpleLoggingTests",
+            dependencies: ["SimpleLogging"]),
     ]
 )
