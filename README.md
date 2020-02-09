@@ -4,23 +4,21 @@
 
 ## Usage
 
-Just import `SimpleLogging` in the the file where you want to use it, and call `Log.print`:
+Just import `SimpleLogging` in the the file where you want to use it, and call the right method for the level you want to log at. For example, if you want to record an error, use `Log.error`:
 
 ```swift
 import SimpleLogging
 
 func someMethod {
-    Log.print("Hello world!", level: .info)
+    Log.error("Something went wrong")
 }
 ```
 
 This will output as below:
 
 ```
-2020-02-01 11:31:14 ℹ️ [INFO]: Hello world!
+2020-02-01 11:31:14 🛑 [ERROR]: Something went wrong
 ```
-
-The `level` parameter is optional, and by default is set to  `.debug`. 
 
 ## Levels
 
