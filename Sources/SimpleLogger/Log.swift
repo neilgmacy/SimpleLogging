@@ -83,22 +83,28 @@ public final class Log {
     // MARK: - Private methods
 
     private static func log(_ message: String, level: LogLevel, includeInRelease: Bool, file: String = #file, function: String = #function) {
+        guard let message = getLogMessage(message, level: level, file: file, function: function) else {
+            return
+        }
+
         if includeInRelease {
-            printLine(message, level: level, file: file, function: function)
+            print(message)
             return
         }
 
         #if DEBUG
-        printLine(message, level: level, file: file, function: function)
+        print(message)
         #endif
     }
 
-    private static func printLine(_ message: String, level: LogLevel, file: String = #file, function: String = #function) {
+    internal static func getLogMessage(_ message: String, level: LogLevel, includeTimeStamp: Bool = true, file: String = #file, function: String = #function) -> String? {
         guard level >= minimumLevel else {
-            return
+            return nil
         }
+
+        let timeStampPrefix = includeTimeStamp ? "\(timeStamp) " : ""
         let locationSuffix = logFileAndFunction ? " at \(lastComponent(of: file)): \(function)" : ""
-        print("\(timeStamp) \(level.emojiDescription): \(message)\(locationSuffix)")
+        return "\(timeStampPrefix)\(level.emojiDescription): \(message)\(locationSuffix)"
     }
 
     private static func lastComponent(of file: String) -> String {
