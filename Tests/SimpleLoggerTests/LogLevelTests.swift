@@ -1,7 +1,7 @@
 import XCTest
 @testable import SimpleLogger
 
-final class SimpleLoggerTests: XCTestCase {
+final class LogLevelTests: XCTestCase {
 
     func testVerboseLessThanAllOtherLevels() {
         XCTAssertTrue(LogLevel.verbose < LogLevel.debug)

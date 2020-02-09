@@ -10,7 +10,7 @@ public enum LogLevel: Int {
     case warn
     case error
 
-    var emojiDescription: String {
+    internal var emojiDescription: String {
         switch self {
         case .verbose:
             return "💬 [VERBOSE]"
@@ -27,7 +27,7 @@ public enum LogLevel: Int {
 }
 
 extension LogLevel: Comparable {
-    public static func < (lhs: LogLevel, rhs:LogLevel) -> Bool {
+    public static func < (lhs: LogLevel, rhs: LogLevel) -> Bool {
         return lhs.rawValue < rhs.rawValue
     }
 }
